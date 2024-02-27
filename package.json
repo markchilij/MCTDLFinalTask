@@ -11,5 +11,8 @@
   "scripts": {
     "wdio": "wdio run ./wdio.conf.js",
     "tag": "wdio run ./wdio.conf.js --cucumberOpts.tags"
+  },
+  "dependencies": {
+    "assert": "^2.1.0"
   }
 }
