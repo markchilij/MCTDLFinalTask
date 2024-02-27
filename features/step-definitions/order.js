@@ -4,14 +4,12 @@ import productPage from '../page-objects/product.page.js';
 import orderPage from '../page-objects/order.page.js';
 import { browser } from '@wdio/globals';
 import headerPage from '../page-objects/header.page.js';
-import assert from 'assert';
 
 When('I click on a product', async function () {
     await productsPage.firstProductPhoto.click();
 });
 
 When('I select {word} size', async function (size) {
-
     await productPage.productSizeSelect.click();
     const selectItems = await productPage.productSizeSelectItems(size);
     await selectItems.click();
@@ -19,15 +17,18 @@ When('I select {word} size', async function (size) {
 
 When('I click on the Add to Cart', async function () {
     await productPage.addToCartButton.click();
-    await browser.pause(3000);
 });
 
 When('I click Continue shopping', async function () {
-    await productPage.continueShoppingButton.click();
+    const continueButton = await productPage.continueShoppingButton;
+    await continueButton.waitForDisplayed({ timeout: 5000, timeoutMsg: 'Continue Shopping Button is not visible'});
+    await continueButton.click();
 });
 
 When('I click on the Proceed to checkout', async function () {
-    await productPage.proceedCheckoutButton.click();
+    const proceedCheckoutButton = await productPage.proceedCheckoutButton;
+    await proceedCheckoutButton.waitForDisplayed({ timeout: 5000, timeoutMsg: 'Proceed checkout Button is not visible'});
+    await proceedCheckoutButton.click();
 });
 
 When('I confirm, click on Proceed to checkout', async function () {

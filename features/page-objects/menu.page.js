@@ -7,9 +7,7 @@ class MenuPage extends Page {
             let el;
 
             await browser.waitUntil(async function () {
-                //const elements = await $$(`[title='Dresses']`); 
                 const elements = await $$(`#block_top_menu [title='${menuItem}']`);
-                // const elements = await $$(`//nav//span[text()="${menuItem}"]`); //block_top_menu [title='Dresses']
 
                 for (const element of elements) {
                     const isDisplayed = await element.isDisplayed();

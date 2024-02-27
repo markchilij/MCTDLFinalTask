@@ -44,14 +44,22 @@ When('I return to home page', async function () {  //  I'm adding this step belo
 });
 
 When('I click on remove item', async function () {
+
     await headerPage.headerCartItemsCount.moveTo();
-    await (await $('.ajax_cart_block_remove_link')).waitForDisplayed({ timeout: 5000 })
+    await (await headerPage.removeItemButton).waitForDisplayed({ timeout: 5000, timeoutMsg: 'Remove button is not visible' });
     await headerPage.removeItemButton.click();
-    await browser.pause(3009);
 });
 
 Then('I see empty card', async function () {
+
     const cartItemsCount = await headerPage.headerCartItemsCount;
+
+    // I added this waitUntil, because the product quantity is not updated instantly
+    await browser.waitUntil(async () => {
+        return (await cartItemsCount.getText()).trim() === "";
+    }, { timeout: 5000, timeoutMsg: 'Card is not empty' });
+
     const count = await cartItemsCount.getText();
     expect(count).toEqual("");
+
 });
