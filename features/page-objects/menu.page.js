@@ -1,0 +1,34 @@
+import { Page } from './page.js';
+import { browser } from '@wdio/globals';
+
+class MenuPage extends Page {
+    async selectMenuItem(menuItems) {
+        for (const [i, menuItem] of menuItems.entries()) {
+            let el;
+    
+            await browser.waitUntil(async function() {
+                //const elements = await $$(`[title='Dresses']`); 
+                const elements = await $$(`[title='${menuItem}']`); 
+                // const elements = await $$(`//nav//span[text()="${menuItem}"]`); //block_top_menu [title='Dresses']
+    
+                for (const element of elements) {
+                    const isDisplayed = await element.isDisplayed();
+                    if (isDisplayed) {
+                        el = element;
+                        return true;
+                    }
+                }
+    
+                return false;
+            });
+    
+            if (i === menuItems.length-1) {
+                await el.click();
+            } else {
+                await el.moveTo();
+            }
+        }
+    }
+}
+
+export default new MenuPage();
