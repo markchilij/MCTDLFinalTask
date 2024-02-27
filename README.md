@@ -1,6 +1,9 @@
 Mark Chilij TDL Winter School Final Task
 
 Instruction for my project:
+At first clone/download this repository
+
+How to install:
 
 Programm setup:
     1) Install VSCode: https://code.visualstudio.com/download
@@ -8,22 +11,16 @@ Programm setup:
     3) Install Extesnions: Name: Cucumber (Gherkin) Full Support
 
 Terminal commands setup:
+    1: ```npm install ```
+    2: ```npm init wdio@latest . ```
+    3:```npm install assert```
+    4: ```npm install @wdio/allure-reporter --save-dev```
     
-    ``` 
-    npm install
-    ```
-    ```
-    npm init wdio@latest .
-    ```
-    ```
-    npm install assert
-    ```
-    ```
-    npm install @wdio/allure-reporter --save-dev
-    ```
+  To run tests:
+   Run all test: ```npm run wdio```
+   Run test by tag(1-4): ```npm run tag -- "@Test2"```
+   Run allure report: ```npm run allure```
 
-
-For select any/first product,I doesn't use a filter, since it does not work on website. You need manualy choose "M" or "L" size
-
-
-For Step-definition: I didn't create other files like "productList.js", because I doesn't have tests for home page (body)
+Some comments about project: 
+    For select any/first product,I doesn't use a filter, since it does not work on website. You need manualy choose "M" or "L" size
+    For Step-definition: I didn't create other files like "productList.js", because I doesn't have tests for home page (body)
