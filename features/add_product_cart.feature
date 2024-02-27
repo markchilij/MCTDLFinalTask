@@ -9,7 +9,6 @@ Feature: Add product
         And I select M size
         And I click on the Add to Cart
         And I click Continue shopping
-        # When I select "Dresses -> Evening Dresses" menu item
         When I select "T-shirts" menu item
         And I click on a product
         And I select M size
